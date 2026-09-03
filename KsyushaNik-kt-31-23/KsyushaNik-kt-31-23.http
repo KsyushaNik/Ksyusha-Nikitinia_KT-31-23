@@ -1,0 +1,6 @@
+@KsyushaNik_kt_31_23_HostAddress = http://localhost:5297
+
+GET {{KsyushaNik_kt_31_23_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
