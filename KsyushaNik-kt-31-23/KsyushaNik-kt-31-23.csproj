@@ -7,8 +7,9 @@
     <RootNamespace>KsyushaNik_kt_31_23</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.19" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NLog.Web.AspNetCore" Version="6.2.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	</ItemGroup>
 
 </Project>
