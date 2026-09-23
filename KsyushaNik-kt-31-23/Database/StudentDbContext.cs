@@ -2,21 +2,27 @@
 using KsyushaNik_kt_31_23.Database.Configurations;
 using KsyushaNik_kt_31_23.Models;
 
-namespace KsyushaNik_kt_31_23.Database;
-
-public class StudentDbContext : DbContext
+namespace KsyushaNik_kt_31_23.Database
 {
-    public DbSet<Student> Students { get; set; } = null!;
-    public DbSet<Group> Groups { get; set; } = null!;
-
-    public StudentDbContext(DbContextOptions<StudentDbContext> options) : base(options)
+    public class StudentDbContext : DbContext
     {
-    }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
+        public DbSet<Discipline> Disciplines { get; set; }
+        public DbSet<Grade> Grades { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfiguration(new StudentConfiguration());
-        modelBuilder.ApplyConfiguration(new GroupConfiguration());
-        base.OnModelCreating(modelBuilder);
+        public StudentDbContext(DbContextOptions<StudentDbContext> options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
+            modelBuilder.ApplyConfiguration(new GroupConfiguration());
+            modelBuilder.ApplyConfiguration(new SpecialtyConfiguration());
+            modelBuilder.ApplyConfiguration(new DisciplineConfiguration());
+            modelBuilder.ApplyConfiguration(new GradeConfiguration());
+        }
     }
 }

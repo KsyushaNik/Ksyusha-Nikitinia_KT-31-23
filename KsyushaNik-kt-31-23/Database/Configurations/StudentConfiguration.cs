@@ -49,9 +49,17 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
             .HasColumnType(ColumnType.Int)
             .HasComment("Идентификатор группы");
 
+        // Признак удаления
+        builder.Property(p => p.IsDeleted)
+            .IsRequired()
+            .HasDefaultValue(false)
+            .HasColumnName("b_is_deleted")
+            .HasColumnType(ColumnType.Bool)
+            .HasComment("Признак удаления");
+
         // Связь один ко многим (одна группа -> много студентов)
         builder.HasOne(p => p.Group)
-            .WithMany()
+            .WithMany(t => t.Students)
             .HasForeignKey(p => p.GroupId)
             .HasConstraintName("fk_f_group_id")
             .OnDelete(DeleteBehavior.Cascade);

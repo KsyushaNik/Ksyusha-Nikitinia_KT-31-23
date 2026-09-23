@@ -1,13 +1,15 @@
-﻿using System.Text.RegularExpressions;
-
-namespace KsyushaNik_kt_31_23.Models;
-
-public class Student
+﻿namespace KsyushaNik_kt_31_23.Models
 {
-    public int StudentId { get; set; }
-    public string FirstName { get; set; } = null!;
-    public string LastName { get; set; } = null!;
-    public string? MiddleName { get; set; }
-    public int GroupId { get; set; }
-    public Group? Group { get; set; }
+    public class Student
+    {
+        public int StudentId { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public string MiddleName { get; set; } = string.Empty;
+        public int GroupId { get; set; }
+        public bool IsDeleted { get; set; } = false;
+
+        public Group? Group { get; set; }
+        public List<Grade> Grades { get; set; } = new();
+    }
 }
