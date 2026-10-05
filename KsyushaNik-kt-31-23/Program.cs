@@ -1,3 +1,4 @@
+using KsyushaNik_kt_31_23.ServiceExtensions;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
@@ -13,11 +14,16 @@ try
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
-    builder.Services.AddControllers();
+    builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
     // Регистрация DbContext для PostgreSQL
     builder.Services.AddDbContext<StudentDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.AddServices();
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
